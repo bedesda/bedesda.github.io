@@ -18,9 +18,9 @@
 		#map {
 		height: 55%;
 		width: 100%;
-   
+
       }
-	  
+
 	  a[href^="http://maps.google.com/maps"],
 	  a[href^="https://maps.google.com/maps"],
 	  a[href^="https://www.google.com/maps"] {
@@ -43,10 +43,10 @@
 	#content {
 		margin-top: 0%;
 		height: 45%
-		
+
 	}
 
-	#contentDiv{	
+	#contentDiv{
 	margin-top: 1%;
     display: inline-block;
 	border-radius: 25px;
@@ -59,8 +59,8 @@
     </style>
   </head>
   <body>
-	<div id="header">LOGO <nav style="float: right;">Menu</nav></div>
-	
+	<div id="header">LOGO <nav style="float: right;"><a href="about.html">About us</a></nav></div>
+
     <div id="map"></div>
     <script>
       var map;
@@ -69,7 +69,7 @@
           center: {lat: 41.8781136, lng: -87.6297981},
           zoom: 12,
 		  disableDefaultUI: true,
-		  
+
 		  styles: [
             {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
             {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
@@ -150,18 +150,18 @@
               stylers: [{color: '#17263c'}]
             }
           ]
-		  
-		  
-		  
+
+
+
         });
       }
     </script>
-	
+
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLXywgbPZJukLHDnerU2lL_YjJvWoH_WA&callback=initMap"
     async defer></script>
 	<div id="content">
-	
+
 	<div id="contentDiv">
 	<ul>
 	<li>List of nice places </li>
