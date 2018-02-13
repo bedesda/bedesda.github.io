@@ -6,7 +6,32 @@
     <title>About us</title>
   </head>
   <body>
-    <p>Github Hyperlink test 2</p>
-    <?php echo 1+1; ?>
+    <p>Github</p>
+    <!--<div id="id01"></div> -->
+
+    <script>
+    var xmlhttp = new XMLHttpRequest();
+    var url = "data.json";
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var myArr = JSON.parse(this.responseText);
+          myFunction(myArr);
+      }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+    function myFunction(arr) {
+      var out = "";
+      var i;
+      for(i = 0; i < arr.length; i++) {
+          out += '<li>' + arr[i].name + '"</li>';
+      }
+      document.getElementById("id01").innerHTML = out;
+    }
+    </script>
+<p>Delimiter</p>
+<ul id="id01"></ul>
+<script>
+</script>
   </body>
 </html>

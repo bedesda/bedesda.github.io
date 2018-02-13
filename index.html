@@ -1,188 +1,185 @@
+
+
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Chicago</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta charset="utf-8">
-    <style>
-	#header{
-	position: fixed;
-	height: 7.5%;
-	width:100%;
-	border-radius: 0px 0px 25px 25px;
-	background:#17263c;
-	z-index: 999;
-	color:white;
-	}
-
-		#map {
-		height: 55%;
-		width: 100%;
-
-      }
-
-	  a[href^="http://maps.google.com/maps"],
-	  a[href^="https://maps.google.com/maps"],
-	  a[href^="https://www.google.com/maps"] {
-      display: none !important;
-}
-.gmnoprint:not(.gm-bundled-control) {
-    display: none;
-}
-.gm-bundled-control .gmnoprint {
-    display: block;
-}
-
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-		background-color: #17263c;
-		color:white;
-	}
-	#content {
-		margin-top: 0%;
-		height: 45%
-
-	}
-
-	#contentDiv{
-	margin-top: 1%;
-    display: inline-block;
-	border-radius: 25px;
-	height: 80%;
-	width: 47%;
-    background: #242f3e;
-	padding: 1.1%;
-	overflow-y:auto;
-	}
-    </style>
-  </head>
-  <body>
-	<div id="header">LOGO <nav style="float: right;"><a href="about.html">About us</a></nav></div>
-
-    <div id="map"></div>
+		<title>Chicago</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta charset="utf-8">
+		<style>
+			#header{
+			position: fixed;
+			height: 7.5%;
+			width:100%;
+			border-radius: 0px 0px 25px 25px;
+			background:#17263c;
+			z-index: 999;
+			color:white;
+			}
+			#map {
+			height: 55%;
+			width: 100%;
+			}
+			a[href^="http://maps.google.com/maps"],
+			a[href^="https://maps.google.com/maps"],
+			a[href^="https://www.google.com/maps"] {
+			display: none !important;
+			}
+			.gmnoprint:not(.gm-bundled-control) {
+			display: none;
+			}
+			.gm-bundled-control .gmnoprint {
+			display: block;
+			}
+			html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			background-color: #17263c;
+			color:white;
+			}
+			#content {
+			margin-top: 0%;
+			height: 45%
+			}
+			.contentDiv{
+			margin-top: 1%;
+			display: inline-block;
+			border-radius: 25px;
+			height: 80%;
+			width: 47%;
+			background: #242f3e;
+			padding: 1.1%;
+			overflow-y:auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="header">
+			LOGO
+			<nav style="float: right;"><a href="about.html">About us</a></nav>
+		</div>
     <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 41.8781136, lng: -87.6297981},
-          zoom: 12,
-		  disableDefaultUI: true,
-
-		  styles: [
-            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-            {
-              featureType: 'administrative.locality',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
-            },
-            {
-              featureType: 'poi',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
-            },
-            {
-              featureType: 'poi.park',
-              elementType: 'geometry',
-              stylers: [{color: '#263c3f'}]
-            },
-            {
-              featureType: 'poi.park',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#6b9a76'}]
-            },
-            {
-              featureType: 'road',
-              elementType: 'geometry',
-              stylers: [{color: '#38414e'}]
-            },
-            {
-              featureType: 'road',
-              elementType: 'geometry.stroke',
-              stylers: [{color: '#212a37'}]
-            },
-            {
-              featureType: 'road',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#9ca5b3'}]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'geometry',
-              stylers: [{color: '#746855'}]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'geometry.stroke',
-              stylers: [{color: '#1f2835'}]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#f3d19c'}]
-            },
-            {
-              featureType: 'transit',
-              elementType: 'geometry',
-              stylers: [{color: '#2f3948'}]
-            },
-            {
-              featureType: 'transit.station',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
-            },
-            {
-              featureType: 'water',
-              elementType: 'geometry',
-              stylers: [{color: '#17263c'}]
-            },
-            {
-              featureType: 'water',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#515c6d'}]
-            },
-            {
-              featureType: 'water',
-              elementType: 'labels.text.stroke',
-              stylers: [{color: '#17263c'}]
-            }
-          ]
-
-
-
-        });
+    var xmlhttp = new XMLHttpRequest();
+    var url = "data.json";
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var myArr = JSON.parse(this.responseText);
+          myFunction(myArr);
       }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+    function myFunction(arr) {
+      var out = "";
+      var i;
+      for(i = 0; i < arr.length; i++) {
+          out += '<li onclick="document.getElementById(&#39;description&#39;).innerHTML = &#39;' + arr[i].phone + '&#39;">' + arr[i].name + '</li>';
+      }
+      document.getElementById("listOfThings").innerHTML = out;
+    }
     </script>
+    <script>
+			var map;
+			function initMap() {
+			  map = new google.maps.Map(document.getElementById('map'), {
+			    center: {lat: 41.8781136, lng: -87.6297981},
+			    zoom: 12,
+			disableDefaultUI: true,
+			styles: [
+			      {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+			      {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+			      {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+			      {
+			        featureType: 'administrative.locality',
+			        elementType: 'labels.text.fill',
+			        stylers: [{color: '#d59563'}]
+			      },
+			      {
+			        featureType: 'poi',
+			        elementType: 'labels.text.fill',
+			        stylers: [{color: '#d59563'}]
+			      },
+			      {
+			        featureType: 'poi.park',
+			        elementType: 'geometry',
+			        stylers: [{color: '#263c3f'}]
+			      },
+			      {
+			        featureType: 'poi.park',
+			        elementType: 'labels.text.fill',
+			        stylers: [{color: '#6b9a76'}]
+			      },
+			      {
+			        featureType: 'road',
+			        elementType: 'geometry',
+			        stylers: [{color: '#38414e'}]
+			      },
+			      {
+			        featureType: 'road',
+			        elementType: 'geometry.stroke',
+			        stylers: [{color: '#212a37'}]
+			      },
+			      {
+			        featureType: 'road',
+			        elementType: 'labels.text.fill',
+			        stylers: [{color: '#9ca5b3'}]
+			      },
+			      {
+			        featureType: 'road.highway',
+			        elementType: 'geometry',
+			        stylers: [{color: '#746855'}]
+			      },
+			      {
+			        featureType: 'road.highway',
+			        elementType: 'geometry.stroke',
+			        stylers: [{color: '#1f2835'}]
+			      },
+			      {
+			        featureType: 'road.highway',
+			        elementType: 'labels.text.fill',
+			        stylers: [{color: '#f3d19c'}]
+			      },
+			      {
+			        featureType: 'transit',
+			        elementType: 'geometry',
+			        stylers: [{color: '#2f3948'}]
+			      },
+			      {
+			        featureType: 'transit.station',
+			        elementType: 'labels.text.fill',
+			        stylers: [{color: '#d59563'}]
+			      },
+			      {
+			        featureType: 'water',
+			        elementType: 'geometry',
+			        stylers: [{color: '#17263c'}]
+			      },
+			      {
+			        featureType: 'water',
+			        elementType: 'labels.text.fill',
+			        stylers: [{color: '#515c6d'}]
+			      },
+			      {
+			        featureType: 'water',
+			        elementType: 'labels.text.stroke',
+			        stylers: [{color: '#17263c'}]
+			      }
+			    ]
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLXywgbPZJukLHDnerU2lL_YjJvWoH_WA&callback=initMap"
-    async defer></script>
-	<div id="content">
 
-	<div id="contentDiv">
-	<ul>
-	<li>List of nice places </li>
-	<li>To click on</li>
-	<li>And could show up on map</li>
-	<li>Would be nice if places were sorted based on their purpose</li>
-	<li>I'll be honest, I'm writing crap to add more bullet points</li>
-	<li>Oh and when you click on the place</li>
-	<li>Beside showing on the map, it would also</li>
-	<li>Shows a description in the right rectangle!</li>
-	<li>Lastly, the scrolling bar would be integrated to the rectangle</li>
-	<li>and not to the entire page, it would be ugly..</li>
-	<li>I've got able to do that, but I've yet to find a nice way of hiding the scrolling bar</li>
-	<li>which is very ugly by default</li>
-	<li>The colors are maybe a bit too dark..?I tried to keep it homogeneous throughout the page</li>
-	<li>I like dark themes on websites in general. And apparently, bullet points also</li>
-	</ul>
-	</div>
-	<div id="contentDiv">
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id lectus lorem. Donec finibus erat sit amet felis condimentum, ac commodo mi maximus. Nullam vitae orci lacus. Nunc neque tellus, lacinia quis neque vel, tincidunt dapibus diam. Maecenas fringilla nibh non fringilla posuere. Morbi tincidunt ac risus et tincidunt. Donec porttitor sapien nec congue elementum.
-	</div>
-  </div>
-  </body>
+			  });
+			}
+		</script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLXywgbPZJukLHDnerU2lL_YjJvWoH_WA&callback=initMap"
+			async defer></script>
+
+
+		<div id="map"></div>
+		<div id="content">
+			<div class="contentDiv"><ul id="listOfThings"></ul></div>
+			<div id="description" class="contentDiv"></div>
+		</div>
+	</body>
 </html>
