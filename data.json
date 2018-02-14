@@ -43,5 +43,23 @@
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida est ipsum, in hendrerit mauris dictum eget.",
       "lat": "41.8808684",
       "long": "-87.63207539999996"
+    },
+    {
+      "type": "restaurant",
+      "name": "Wildberry Pancakes and Cafe",
+      "phone": "(312) 938-9777",
+      "address": "130 E Randolph St, Chicago, IL 60601",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida est ipsum, in hendrerit mauris dictum eget.",
+      "lat": "41.884645 ",
+      "long": "-87.622879"
+    },
+    {
+      "type": "restaurant",
+      "name": "Eleven City Diner",
+      "phone": "(312) 604-9909",
+      "address": "1112 S Wabash Ave, Chicago, IL 60605",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida est ipsum, in hendrerit mauris dictum eget.",
+      "lat": "41.86872",
+      "long": "-87.626312"
     }
 ]

@@ -1,225 +1,236 @@
+
+
 <!DOCTYPE html>
 <html>
-  <head>
-		<title>Chicago</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<meta charset="utf-8">
-		<style>
-			#header{
-			position: fixed;
-			height: 7.5%;
-			width:100%;
-			border-radius: 0px 0px 25px 25px;
-			background:#17263c;
-			z-index: 999;
-			color:white;
-			}
-			#map {
-			height: 55%;
-			width: 100%;
-			}
-			a[href^="http://maps.google.com/maps"],
-			a[href^="https://maps.google.com/maps"],
-			a[href^="https://www.google.com/maps"] {
-			display: none !important;
-			}
-			.gmnoprint:not(.gm-bundled-control) {
-			display: none;
-			}
-			.gm-bundled-control .gmnoprint {
-			display: block;
-			}
-      br,li{
-        line-height:15 px;
-      }
-      li:hover{
-        line-height: 300 px;
-        color:purple;
-        font-style: italic;
-        cursor: pointer;
-      }
-			html, body {
-			height: 100%;
-			margin: 0;
-			padding: 0;
-			background-color: #17263c;
-			color:white;
-			}
-			#content {
-			margin-top: 0%;
-			height: 45%
-			}
-			.contentDiv{
-			margin-top: 1%;
-			display: inline-block;
-			border-radius: 25px;
-			height: 80%;
-			width: 47%;
-			background: #242f3e;
-			padding: 1.1%;
-			overflow-y:auto;
-			}
+   <head>
+      <title>Chicago</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+      <meta charset="utf-8">
+      <style>
+         #header{
+         position: fixed;
+         height: 7.5%;
+         width:100%;
+         border-radius: 0px 0px 25px 25px;
+         background:#17263c;
+         z-index: 999;
+         color:white;
+         }
+         #map {
+         height: 55%;
+         width: 100%;
+         }
+         a[href^="http://maps.google.com/maps"],
+         a[href^="https://maps.google.com/maps"],
+         a[href^="https://www.google.com/maps"] {
+         display: none !important;
+         }
+         .gmnoprint:not(.gm-bundled-control) {
+         display: none;
+         }
+         .gm-bundled-control .gmnoprint {
+         display: block;
+         }
+         br,li{
+         line-height:15 px;
+         }
+         li:hover{
+         color:purple;
+         font-style: italic;
+         cursor: pointer;
+         }
+         html, body {
+         height: 100%;
+         margin: 0;
+         padding: 0;
+         background-color: #17263c;
+         color:white;
+         }
+         #content {
+         margin-top: 0%;
+         height: 45%;
+         width: 40
+         }
+         .contentDiv{
+         margin-top: 1%;
+         display: inline-block;
+         border-radius: 25px;
+         height: 80%;
+         width: 47%;
+         background: #242f3e;
+         padding: 10px;
+         overflow-y:auto;
+         }
+         .subMenu{
+         display: inline-block;
+         margin-right: 10px;
+         overflow-x: auto;
+         white-space: nowrap;
+         }
+         ul.subMenu{
+         width: 100%;
+         }
+         li{
+         list-style-type: none;
+         margin-bottom: 10px;
+         padding: 1.1%;
+         border-radius: 25px;
+         background-color: #4f5864;
+         }
+      </style>
+   </head>
+   <body>
+      <div id="header">
+         LOGO
+         <nav style="float: right;"><a href="about.html">About us</a></nav>
+      </div>
+      <script>
+         var xmlhttp = new XMLHttpRequest();
+         var url = "data.json";
+         xmlhttp.onreadystatechange = function() {
+           if (this.readyState == 4 && this.status == 200) {
+               var myArr = JSON.parse(this.responseText);
+               myFunction(myArr);
+           }
+         };
+         xmlhttp.open("GET", url, true);
+         xmlhttp.send();
+         function myFunction(arr) {
 
-      .subMenu{
-        display: inline-block;
-        margin-right: 10px;
-        overflow-x: auto;
-        white-space: nowrap;
-      }
-      ul{
-        width: auto;
-      }
-      li{
-        list-style-type: none;
-        margin-bottom: 10px;
-        padding: 1.1%;
-        border-radius: 25px;
-        background-color: #4f5864;
-      }
-		</style>
-	</head>
-	<body>
-		<div id="header">
-			LOGO
-			<nav style="float: right;"><a href="about.html">About us</a></nav>
-		</div>
-    <script>
-    var xmlhttp = new XMLHttpRequest();
-    var url = "data.json";
-    xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-          var myArr = JSON.parse(this.responseText);
-          myFunction(myArr);
-      }
-    };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
-    function myFunction(arr) {
-      var out = "";
-      var i;
+           var out = "";
+           var i;
 
-      for(i = 0; i < arr.length; i++) {
-          //out += '<li onclick="setMarker({lat:'+arr[i].lat+', lng:'+arr[i].long+'});document.getElementById(&#39;description&#39;).innerHTML = &#39;'+ arr[i].name + '<br>'+ arr[i].address + '<br>' + arr[i].phone + '&#39;">' + arr[i].name + '</li>';
-          //out += '<li onclick="var xx={lat:'+(41.8787998)+', lng:'+(-87.62622799999997)+'}; setMarker(xx);document.getElementById(&#39;description&#39;).innerHTML = &#39;'+ arr[i].name + '<br>'+ arr[i].address + '<br>' + arr[i].phone + '&#39;">' + arr[i].name + '</li>';
-          out += '<li onclick="placeMarker({lat:'+ arr[i].lat +', lng:'+ arr[i].long +'});document.getElementById(&#39;description&#39;).innerHTML = &#39;'+ arr[i].name + '<br>'+ arr[i].address + '<br>' + arr[i].phone + '&#39;">' + arr[i].name + '</li>';
-      }
-      document.getElementById("listOfThings").innerHTML = out;
-    }
-    </script>
-    <script>
-			var map;
-      var marker;
-
-			function initMap() {
-			  map = new google.maps.Map(document.getElementById('map'), {
-			    center: {lat: 41.8781136, lng: -87.6297981},
-			    zoom: 12,
-			disableDefaultUI: false,
-			styles: [
-			      {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-			      {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-			      {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-			      {
-			        featureType: 'administrative.locality',
-			        elementType: 'labels.text.fill',
-			        stylers: [{color: '#d59563'}]
-			      },
-			      {
-			        featureType: 'poi',
-			        elementType: 'labels.text.fill',
-			        stylers: [{color: '#d59563'}]
-			      },
-			      {
-			        featureType: 'poi.park',
-			        elementType: 'geometry',
-			        stylers: [{color: '#263c3f'}]
-			      },
-			      {
-			        featureType: 'poi.park',
-			        elementType: 'labels.text.fill',
-			        stylers: [{color: '#6b9a76'}]
-			      },
-			      {
-			        featureType: 'road',
-			        elementType: 'geometry',
-			        stylers: [{color: '#38414e'}]
-			      },
-			      {
-			        featureType: 'road',
-			        elementType: 'geometry.stroke',
-			        stylers: [{color: '#212a37'}]
-			      },
-			      {
-			        featureType: 'road',
-			        elementType: 'labels.text.fill',
-			        stylers: [{color: '#9ca5b3'}]
-			      },
-			      {
-			        featureType: 'road.highway',
-			        elementType: 'geometry',
-			        stylers: [{color: '#746855'}]
-			      },
-			      {
-			        featureType: 'road.highway',
-			        elementType: 'geometry.stroke',
-			        stylers: [{color: '#1f2835'}]
-			      },
-			      {
-			        featureType: 'road.highway',
-			        elementType: 'labels.text.fill',
-			        stylers: [{color: '#f3d19c'}]
-			      },
-			      {
-			        featureType: 'transit',
-			        elementType: 'geometry',
-			        stylers: [{color: '#2f3948'}]
-			      },
-			      {
-			        featureType: 'transit.station',
-			        elementType: 'labels.text.fill',
-			        stylers: [{color: '#d59563'}]
-			      },
-			      {
-			        featureType: 'water',
-			        elementType: 'geometry',
-			        stylers: [{color: '#17263c'}]
-			      },
-			      {
-			        featureType: 'water',
-			        elementType: 'labels.text.fill',
-			        stylers: [{color: '#515c6d'}]
-			      },
-			      {
-			        featureType: 'water',
-			        elementType: 'labels.text.stroke',
-			        stylers: [{color: '#17263c'}]
-			      }
-			    ]
+           for(i = 0; i < arr.length; i++) {
+               //out += '<li onclick="setMarker({lat:'+arr[i].lat+', lng:'+arr[i].long+'});document.getElementById(&#39;description&#39;).innerHTML = &#39;'+ arr[i].name + '<br>'+ arr[i].address + '<br>' + arr[i].phone + '&#39;">' + arr[i].name + '</li>';
+               //out += '<li onclick="var xx={lat:'+(41.8787998)+', lng:'+(-87.62622799999997)+'}; setMarker(xx);document.getElementById(&#39;description&#39;).innerHTML = &#39;'+ arr[i].name + '<br>'+ arr[i].address + '<br>' + arr[i].phone + '&#39;">' + arr[i].name + '</li>';
+               if(currentSubMenu==arr[i].type){
+                 out += '<li onclick="placeMarker({lat:'+ arr[i].lat +', lng:'+ arr[i].long +'});document.getElementById(&#39;description&#39;).innerHTML = &#39;'+ arr[i].name + '<br>'+ arr[i].address + '<br>' + arr[i].phone + '&#39;">' + arr[i].name + '</li>';
+               }
+           }
+           document.getElementById("listOfThings").innerHTML = out;
+         }
+      </script>
+      <script>
+      //GLOBAL VARIABLE
+         var map;
+            var marker;
+            var currentSubMenu="bar";
+         function initMap() {
+           map = new google.maps.Map(document.getElementById('map'), {
+             center: {lat: 41.8781136, lng: -87.6297981},
+             zoom: 12,
+         disableDefaultUI: false,
+         styles: [
+               {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+               {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+               {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+               {
+                 featureType: 'administrative.locality',
+                 elementType: 'labels.text.fill',
+                 stylers: [{color: '#d59563'}]
+               },
+               {
+                 featureType: 'poi',
+                 elementType: 'labels.text.fill',
+                 stylers: [{color: '#d59563'}]
+               },
+               {
+                 featureType: 'poi.park',
+                 elementType: 'geometry',
+                 stylers: [{color: '#263c3f'}]
+               },
+               {
+                 featureType: 'poi.park',
+                 elementType: 'labels.text.fill',
+                 stylers: [{color: '#6b9a76'}]
+               },
+               {
+                 featureType: 'road',
+                 elementType: 'geometry',
+                 stylers: [{color: '#38414e'}]
+               },
+               {
+                 featureType: 'road',
+                 elementType: 'geometry.stroke',
+                 stylers: [{color: '#212a37'}]
+               },
+               {
+                 featureType: 'road',
+                 elementType: 'labels.text.fill',
+                 stylers: [{color: '#9ca5b3'}]
+               },
+               {
+                 featureType: 'road.highway',
+                 elementType: 'geometry',
+                 stylers: [{color: '#746855'}]
+               },
+               {
+                 featureType: 'road.highway',
+                 elementType: 'geometry.stroke',
+                 stylers: [{color: '#1f2835'}]
+               },
+               {
+                 featureType: 'road.highway',
+                 elementType: 'labels.text.fill',
+                 stylers: [{color: '#f3d19c'}]
+               },
+               {
+                 featureType: 'transit',
+                 elementType: 'geometry',
+                 stylers: [{color: '#2f3948'}]
+               },
+               {
+                 featureType: 'transit.station',
+                 elementType: 'labels.text.fill',
+                 stylers: [{color: '#d59563'}]
+               },
+               {
+                 featureType: 'water',
+                 elementType: 'geometry',
+                 stylers: [{color: '#17263c'}]
+               },
+               {
+                 featureType: 'water',
+                 elementType: 'labels.text.fill',
+                 stylers: [{color: '#515c6d'}]
+               },
+               {
+                 featureType: 'water',
+                 elementType: 'labels.text.stroke',
+                 stylers: [{color: '#17263c'}]
+               }
+             ]
 
 
 
-			  });
-        }
+           });
+              }
 
-        function placeMarker(location) {
-          if (marker != null)
-          {
-            marker.setMap(null);
-          }
-          marker = new google.maps.Marker({
-            position: location,
-            map: map
-          });
-        }
+              function placeMarker(location) {
+                if (marker != null)
+                {
+                  marker.setMap(null);
+                }
+                marker = new google.maps.Marker({
+                  position: location,
+                  map: map
+                });
+              }
 
-		</script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLXywgbPZJukLHDnerU2lL_YjJvWoH_WA&callback=initMap"
-			async defer></script>
-
-		<div id="map"></div>
-		<div id="content">
-			<div class="contentDiv"><ul class="subMenu"><li class="subMenu">Bar</li><li class="subMenu">Restaurant</li><li class="subMenu">Landmark</li></ul><ul id="listOfThings"></ul></div>
-			<div id="description" class="contentDiv"></div>
-		</div>
-	</body>
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLXywgbPZJukLHDnerU2lL_YjJvWoH_WA&callback=initMap"
+         async defer></script>
+      <div id="map"></div>
+      <div id="content">
+         <div class="contentDiv">
+            <ul class="subMenu">
+               <li class="subMenu" onclick="currentSubMenu='bar'">Bar</li>
+               <li class="subMenu" onclick="currentSubMenu='Restaurant'">Restaurant</li>
+               <li class="subMenu"onclick="currentSubMenu='landmark'">Landmark</li>
+            </ul>
+            <ul id="listOfThings"></ul>
+         </div>
+         <div id="description" class="contentDiv"></div>
+      </div>
+   </body>
 </html>
