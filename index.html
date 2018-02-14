@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -31,6 +29,15 @@
 			.gm-bundled-control .gmnoprint {
 			display: block;
 			}
+      br,li{
+        line-height:15 px;
+      }
+      li:hover{
+        line-height: 300 px;
+        color:purple;
+        font-style: italic;
+        cursor: pointer;
+      }
 			html, body {
 			height: 100%;
 			margin: 0;
@@ -52,6 +59,17 @@
 			padding: 1.1%;
 			overflow-y:auto;
 			}
+      .subMenu{
+        display:inline;
+        margin-right: 10px;
+      }
+      li{
+        list-style-type: none;
+        margin-bottom: 10px;
+        padding: 1.1%;
+        border-radius: 25px;
+        background-color: #4f5864;
+      }
 		</style>
 	</head>
 	<body>
@@ -73,19 +91,24 @@
     function myFunction(arr) {
       var out = "";
       var i;
+
       for(i = 0; i < arr.length; i++) {
-          out += '<li onclick="document.getElementById(&#39;description&#39;).innerHTML = &#39;' + arr[i].phone + '&#39;">' + arr[i].name + '</li>';
+          //out += '<li onclick="setMarker({lat:'+arr[i].lat+', lng:'+arr[i].long+'});document.getElementById(&#39;description&#39;).innerHTML = &#39;'+ arr[i].name + '<br>'+ arr[i].address + '<br>' + arr[i].phone + '&#39;">' + arr[i].name + '</li>';
+          //out += '<li onclick="var xx={lat:'+(41.8787998)+', lng:'+(-87.62622799999997)+'}; setMarker(xx);document.getElementById(&#39;description&#39;).innerHTML = &#39;'+ arr[i].name + '<br>'+ arr[i].address + '<br>' + arr[i].phone + '&#39;">' + arr[i].name + '</li>';
+          out += '<li onclick="placeMarker({lat:'+ arr[i].lat +', lng:'+ arr[i].long +'});document.getElementById(&#39;description&#39;).innerHTML = &#39;'+ arr[i].name + '<br>'+ arr[i].address + '<br>' + arr[i].phone + '&#39;">' + arr[i].name + '</li>';
       }
       document.getElementById("listOfThings").innerHTML = out;
     }
     </script>
     <script>
 			var map;
+      var marker;
+
 			function initMap() {
 			  map = new google.maps.Map(document.getElementById('map'), {
 			    center: {lat: 41.8781136, lng: -87.6297981},
 			    zoom: 12,
-			disableDefaultUI: true,
+			disableDefaultUI: false,
 			styles: [
 			      {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
 			      {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
@@ -170,15 +193,26 @@
 
 
 			  });
-			}
+        }
+
+        function placeMarker(location) {
+          if (marker != null)
+          {
+            marker.setMap(null);
+          }
+          marker = new google.maps.Marker({
+            position: location,
+            map: map
+          });
+        }
+
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLXywgbPZJukLHDnerU2lL_YjJvWoH_WA&callback=initMap"
 			async defer></script>
 
-
 		<div id="map"></div>
 		<div id="content">
-			<div class="contentDiv"><ul id="listOfThings"></ul></div>
+			<div class="contentDiv"><ul class="subMenu"><li class="subMenu">Bar</li><li class="subMenu">Restaurant</li><li class="subMenu">Landmark</li></ul><ul id="listOfThings"></ul></div>
 			<div id="description" class="contentDiv"></div>
 		</div>
 	</body>

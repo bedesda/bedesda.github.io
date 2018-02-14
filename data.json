@@ -1,32 +1,47 @@
 [
     {
+      "type": "bar",
 			"name": "2Twenty2 Tavern",
 			"phone": "(312) 878-9994",
 			"address": "222 S Wabash Ave, Chicago, IL 60604",
-	  	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida est ipsum, in hendrerit mauris dictum eget."
+	  	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida est ipsum, in hendrerit mauris dictum eget.",
+      "lat": "41.8787998",
+      "long": "-87.62622799999997"
 		},
     {
+      "type": "bar",
 			"name": "Milk Room",
 			"phone": "(312) 792-3535",
 			"address": "12 S Michigan, Chicago, IL 60603",
-	  	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida est ipsum, in hendrerit mauris dictum eget."
+	  	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida est ipsum, in hendrerit mauris dictum eget.",
+      "lat": "41.8816433",
+      "long": "-87.625001"
 		},
     {
+      "type": "bar",
       "name": "Drawing Room",
       "phone": "(844) 312-2221",
       "address": "12 S Michigan Ave, Chicago, IL 60603",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida est ipsum, in hendrerit mauris dictum eget."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida est ipsum, in hendrerit mauris dictum eget.",
+      "lat": "41.8816433",
+      "long": "-87.625001"
     },
     {
+      "type": "bar",
       "name": "SafeHouse Chicago",
       "phone": "(312) 313-1007",
       "address": "60 E Ontario St, Chicago, IL 60611",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida est ipsum, in hendrerit mauris dictum eget."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida est ipsum, in hendrerit mauris dictum eget.",
+      "lat": "41.89346279999999",
+      "long": "-87.6258363"
     },
     {
+      "type": "bar",
       "name": "Vol. 39",
       "phone": "(312) 604-9909",
       "address": "39 South La Salle St, Chicago, IL 60603",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida est ipsum, in hendrerit mauris dictum eget."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida est ipsum, in hendrerit mauris dictum eget.",
+      "lat": "41.8808684",
+      "long": "-87.63207539999996"
     }
 ]
